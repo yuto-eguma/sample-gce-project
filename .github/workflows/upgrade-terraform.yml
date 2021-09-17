@@ -23,8 +23,8 @@ jobs:
           
       - name: Create commit if needs
         run: |
-          git config user.name 'EgumaYuto'
-          git config user.email 'yuto.eguma@gmail.com'
+          git config user.name ${{ secrets.BOT_USER_NAME }}
+          git config user.email ${{ secrets.BOT_EMAIL }}
           git add infra/.terraform-version
           git commit -m "upgrade terrafrom" || echo "The version is the latest"
 
