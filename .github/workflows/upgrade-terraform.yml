@@ -18,7 +18,9 @@ jobs:
         run: git clone https://github.com/tfutils/tfenv.git ~/.tfenv
 
       - name: Upgrade Terraform
-        run: ~/.tfenv/bin/tfenv list-remote | grep -E "^[0-9]+\.[0-9]+\.[0-9]+$" | head -n1 > infra/.terraform-version
+        run: |
+          ~/.tfenv/bin/tfenv list-remote | grep -E "^[0-9]+\.[0-9]+\.[0-9]+$" | head -n1 > infra/.terraform-version
+          LATEST_TERRAFORM_VERSION=$(cat infra/.terraform-version)
           
       - name: Create commit if needs
         run: |
@@ -29,3 +31,5 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
+        with:
+          branch: upgrade_terraform_version_$LATEST_TERRAFORM_VERSION
