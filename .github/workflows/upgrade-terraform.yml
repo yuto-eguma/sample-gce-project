@@ -35,3 +35,4 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: upgrade_terraform_version_${{ steps.upgrade.outputs.LATEST_TERRAFORM_VERSION }}
+          title: "Upgrade terraform version ${{ steps.upgrade.outputs.LATEST_TERRAFORM_VERSION }}"
