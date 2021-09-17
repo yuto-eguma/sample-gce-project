@@ -1,4 +1,4 @@
-name: upgrade terraform
+name: Upgrade Terraform
 
 on:
   schedule:
