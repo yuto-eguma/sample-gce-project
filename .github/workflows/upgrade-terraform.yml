@@ -4,12 +4,27 @@ on:
   schedule:
     - cron: '* 0 * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - "main"
 
 jobs:
   upgrade:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+
+      - name: Install tfenv
+        run: git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+
+      - name: Create Commits
+        run: |
+          git config user.name 'EgumaYuto'
+          git config user.email 'yuto.eguma@gmail.com'
+          ~/.tfenv/bin/tfenv list-remote | grep -E "^[0-9]+\.[0-9]+\.[0-9]+$" | head -n1 > infra/.terraform-version
+          git add infra/.terraform-version
+          git commit -m "upgrade terrafrom"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
