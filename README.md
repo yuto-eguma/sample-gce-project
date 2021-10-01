@@ -1,1 +1,1 @@
-# my-terraform-scratch
+# GCP VMインスタンス作成のサンプル
