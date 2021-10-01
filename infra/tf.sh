@@ -15,6 +15,8 @@ echo "=========== $TARGET_DIR"
 
 if [[ ${TF_CMD} != 'init' ]]; then
   TF_VAR_primary_env=$(echo $ENV_CONFIG | jq -r ".primary_env") \
+  TF_VAR_project_id=$(echo $ENV_CONFIG | jq -r ".project_id") \
+  TF_VAR_region=$(echo $ENV_CONFIG | jq -r ".region") \
   terraform $1 $TF_ARGS
 else
   terraform providers lock -platform=darwin_amd64 -platform=linux_amd64

@@ -1,4 +1,7 @@
 {
   "env": "dev",
-  "primary_env": true
+  "primary_env": true,
+  "project_id": "gce-sample-326304",
+  "region": "asia-northeast1",
+  "zone": ["asia-northeast1-a", "asia-northeast1-b", "asia-northeast1-c"]
 }
