@@ -13,5 +13,5 @@ module "naming" {
 
 resource "google_service_account" "account" {
   account_id   = module.naming.name
-  display_name = "Account Name"
+  display_name = module.naming.name
 }
