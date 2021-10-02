@@ -46,6 +46,8 @@ resource "google_compute_instance" "default" {
     email = google_service_account.account.email
     scopes = [ "cloud-platform" ]
   }
+
+  metadata_startup_script = "sudo apt update && sudo apt -y install apache2 && echo '<!doctype html><html><body><h1>Hello World!</h1></body></html>' | sudo tee /var/www/html/index.html"
 }
 
 resource "google_compute_firewall" "default" {
