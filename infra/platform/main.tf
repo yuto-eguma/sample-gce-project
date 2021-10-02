@@ -47,3 +47,17 @@ resource "google_compute_instance" "default" {
     scopes = [ "cloud-platform" ]
   }
 }
+
+resource "google_compute_firewall" "default" {
+  name = module.naming.name
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+
+  source_tags = google_compute_instance.default.tags
+}
