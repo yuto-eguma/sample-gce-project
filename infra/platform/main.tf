@@ -28,30 +28,24 @@ resource "google_compute_instance" "default" {
     initialize_params {
       image = "debian-cloud/debian-9"
     }
-  } 
-
-  # scratch_disk {
-  #   interface = "SCSI"
-  # }
+  }
 
   network_interface {
     network = "default"
 
-    access_config {
-      // Ephemral public IP
-    }
+    access_config {}
   }
 
   service_account {
-    email = google_service_account.account.email
-    scopes = [ "cloud-platform" ]
+    email  = google_service_account.account.email
+    scopes = ["cloud-platform"]
   }
 
   metadata_startup_script = "sudo apt update && sudo apt -y install apache2 && echo '<!doctype html><html><body><h1>Hello World!</h1></body></html>' | sudo tee /var/www/html/index.html"
 }
 
 resource "google_compute_firewall" "default" {
-  name = module.naming.name
+  name    = module.naming.name
   network = "default"
 
   allow {
