@@ -9,9 +9,9 @@ module "naming" {
 }
 
 resource "google_compute_network" "vpc_network" {
-  name         = module.naming.name
+  name                    = module.naming.name
   auto_create_subnetworks = false
-  routing_mode = "REGIONAL"
+  routing_mode            = "REGIONAL"
 }
 
 resource "google_compute_subnetwork" "vpc_subnetwork" {
